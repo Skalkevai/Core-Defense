@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Engine : MonoBehaviour
 {
@@ -15,6 +16,23 @@ public class Engine : MonoBehaviour
     public TextMeshProUGUI lostText;
     public TextMeshProUGUI highScoresText;
     public int highScores;
+
+    public Color playerColor;
+    public SpriteRenderer[] playersSprites;
+    public Image lifeRadial;
+
+    public Color enemyColor;
+
+    public void Start()
+    {
+        foreach (SpriteRenderer s in playersSprites)
+        {
+            s.color = playerColor;
+        }
+        lifeRadial.color = playerColor;
+
+
+    }
 
     public void Lost(int nbWave)
     {

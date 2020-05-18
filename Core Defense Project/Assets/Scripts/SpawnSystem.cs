@@ -46,14 +46,12 @@ public class SpawnSystem : MonoBehaviour
                 timerText.text = "0" + minutes + ":0" + seconds;
             }
 
-            //UI Waves
-           // waveText.GetComponent<TextMeshProUGUI>().text = "Waves : " + currentWave;
-
             //Timer 
             currentTimer -= Time.deltaTime;
 
             if (currentTimer <= 0)
             {
+                CollectCredit();
                 StartWave(currentWave + 1);
                 int timerExtra = (int)(currentTimer / 5f);
                 timer += timerExtra;
@@ -68,6 +66,11 @@ public class SpawnSystem : MonoBehaviour
         }
     }
 
+    public void CollectCredit()
+    { 
+    
+    }
+    
     public void StartWave(int waveNb)
     {
         GameObject w = Instantiate(waveText,GameObject.FindGameObjectWithTag("Canvas").transform);
@@ -105,7 +108,8 @@ public class SpawnSystem : MonoBehaviour
 
         foreach (GameObject e in enemies)
         {
-            e.GetComponent<Enemy>().Die();
+            if(e!=null)
+                e.GetComponent<Enemy>().Die();
             yield return new WaitForSeconds(0.50f);
         }
 

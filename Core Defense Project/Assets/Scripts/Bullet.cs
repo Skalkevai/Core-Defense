@@ -9,6 +9,11 @@ public class Bullet : MonoBehaviour
     public Player player;
     public GameObject bulletExplosion;
 
+    public void Start()
+    {
+        GetComponent<SpriteRenderer>().color = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor;
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -17,6 +22,7 @@ public class Bullet : MonoBehaviour
             collision.GetComponent<Enemy>().TakeDamage(player.bulletDamage);
             Destroy(gameObject);
             GameObject e = Instantiate(bulletExplosion);
+            e.GetComponent<ParticleSystem>().startColor = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor;
             e.transform.position = this.transform.position;
         }
     }

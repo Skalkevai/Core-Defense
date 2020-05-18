@@ -19,6 +19,11 @@ public class Satellite : MonoBehaviour
     float time = 0;
     private void Start()
     {
+        foreach (SpriteRenderer item in GetComponentsInChildren<SpriteRenderer>())
+        {
+            item.color = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor;
+        }
+
         enemies = GameObject.FindGameObjectWithTag("Enemies").transform;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
