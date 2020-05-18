@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
 public class Engine : MonoBehaviour
 {
     public int credit;
+    public TextMeshProUGUI creditNumberText;
 
     public Transform orbit1;
     public Transform orbit2;
@@ -18,19 +20,26 @@ public class Engine : MonoBehaviour
     public int highScores;
 
     public Color playerColor;
+    public Color colorDarker;
+    private Color playerColorDarker;
     public SpriteRenderer[] playersSprites;
     public Image lifeRadial;
+    public GameObject centralLight;
 
     public Color enemyColor;
+    public Color itemColor;
 
     public void Start()
     {
+        //SetColor
         foreach (SpriteRenderer s in playersSprites)
         {
             s.color = playerColor;
         }
         lifeRadial.color = playerColor;
 
+        playerColorDarker = Color.Lerp(playerColor, colorDarker, 0.5f);
+        centralLight.GetComponent<Light2D>().color = playerColorDarker;
 
     }
 
@@ -43,7 +52,9 @@ public class Engine : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SpawnSatellite(orbit1);
         }
@@ -56,6 +67,7 @@ public class Engine : MonoBehaviour
             SpawnSatellite(orbit3);
         }
 
+        creditNumberText.text = ""+credit;
     }
 
     public void AddScore(int scores)
