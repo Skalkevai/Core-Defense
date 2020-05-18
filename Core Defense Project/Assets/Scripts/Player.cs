@@ -15,11 +15,16 @@ public class Player : MonoBehaviour
 
     public int bulletDamage;
     public GameObject bullet;
+    public float fireRate;
+    public float sateliteDamage;
+    public int sateliteRange;
+    public float sateliteFireRate;
 
     public Rotate cannon;
     public int cannonSpeed;
     public KeyCode fireInput;
     public Transform firePoint;
+    private float time;
 
     // Start is called before the first frame update
     void Start()
@@ -33,10 +38,18 @@ public class Player : MonoBehaviour
     {
         healthCircle.fillAmount = (currentLife / maxLife);
 
+        time += Time.deltaTime;
+
         if (Input.GetKeyDown(fireInput))
         {
-            Shoot();
+            if(time >= fireRate)
+            {
+                time = 0;
+                Shoot();
+            }
         }
+
+
 
         if (currentLife <= 0 && !isDead)
         {

@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Enemy
   - Engine
+  - Enemies
+  - Canvas
   layers:
   - Default
   - TransparentFX

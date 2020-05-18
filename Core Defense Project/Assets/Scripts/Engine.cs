@@ -12,11 +12,33 @@ public class Engine : MonoBehaviour
 
     public GameObject satellite;
 
-    public void Lost()
+    
+
+    public void Lost(int nbWave)
     {
-        
+        GetComponent<Animator>().SetTrigger("Lost");   
     
     }
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SpawnSatellite(orbit1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SpawnSatellite(orbit2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SpawnSatellite(orbit3);
+        }
 
+    }
+
+    public void SpawnSatellite(Transform orbit)
+    {
+        GameObject s = Instantiate(satellite,orbit);
+    }
 }

@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public int speed;
     public int maxLife;
     [HideInInspector]
-    public int currentLife;
+    public float currentLife;
     public int damage;
     public GameObject deadEffect;
 
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);     
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentLife -= damage;
     }

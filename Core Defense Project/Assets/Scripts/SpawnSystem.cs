@@ -13,11 +13,12 @@ public class SpawnSystem : MonoBehaviour
     float timer;
     float currentTimer;
 
-    public TextMeshProUGUI waveText;
+    public GameObject waveText;
     public TextMeshProUGUI timerText;
 
     public GameObject enemy;
     public int nbEnemy;
+    public Transform enemies;
 
     public bool lost;
 
@@ -26,7 +27,8 @@ public class SpawnSystem : MonoBehaviour
     {
         timer = 20;
         currentTimer = timer;
-        StartWave(1);
+        currentWave = 1;
+        StartWave(currentWave);
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class SpawnSystem : MonoBehaviour
             }
 
             //UI Waves
-            waveText.text = "Waves : " + currentWave;
+           // waveText.GetComponent<TextMeshProUGUI>().text = "Waves : " + currentWave;
 
             //Timer 
             currentTimer -= Time.deltaTime;
@@ -68,6 +70,10 @@ public class SpawnSystem : MonoBehaviour
 
     public void StartWave(int waveNb)
     {
+        GameObject w = Instantiate(waveText,GameObject.FindGameObjectWithTag("Canvas").transform);
+        w.GetComponent<TextMeshProUGUI>().text = "Waves : " + waveNb;
+        Destroy(w,2f);
+
         //Wave
         currentWave = waveNb;
         maxNbEnemy = startMaxNbEnemy + (1 * waveNb);
@@ -87,7 +93,7 @@ public class SpawnSystem : MonoBehaviour
             }
 
             //Spawn Enemy
-            GameObject e = Instantiate(enemy);
+            GameObject e = Instantiate(enemy,enemies);
             nbEnemy++;
             e.transform.position = new Vector2(x, y);
         }
@@ -103,7 +109,7 @@ public class SpawnSystem : MonoBehaviour
             yield return new WaitForSeconds(0.50f);
         }
 
-        GetComponent<Engine>().Lost();
+        GetComponent<Engine>().Lost(currentWave);
     }
 
     public void CallClean()
