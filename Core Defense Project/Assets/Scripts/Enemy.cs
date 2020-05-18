@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().AddScore(50);
         GameObject de = Instantiate(deadEffect);
         de.transform.position = this.transform.position;
         GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().nbEnemy--;

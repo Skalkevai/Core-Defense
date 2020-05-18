@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Engine : MonoBehaviour
@@ -9,15 +10,17 @@ public class Engine : MonoBehaviour
     public Transform orbit1;
     public Transform orbit2;
     public Transform orbit3;
-
     public GameObject satellite;
 
-    
+    public TextMeshProUGUI lostText;
+    public TextMeshProUGUI highScoresText;
+    public int highScores;
 
     public void Lost(int nbWave)
     {
+        lostText.text = "You Survived " + (nbWave-1) + " Waves";
+        highScoresText.text = "HighScores : "+ highScores;
         GetComponent<Animator>().SetTrigger("Lost");   
-    
     }
 
     public void Update()
@@ -35,6 +38,11 @@ public class Engine : MonoBehaviour
             SpawnSatellite(orbit3);
         }
 
+    }
+
+    public void AddScore(int scores)
+    {
+        highScores += scores;
     }
 
     public void SpawnSatellite(Transform orbit)
