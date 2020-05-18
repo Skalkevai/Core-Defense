@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     public float currentLife;
     public GameObject deathEffect;
     public bool isDead;
+    public Image healthCircle;
 
     public int bulletDamage;
     public GameObject bullet;
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthCircle.fillAmount = (currentLife / maxLife);
+
         if (Input.GetKeyDown(fireInput))
         {
             Shoot();
