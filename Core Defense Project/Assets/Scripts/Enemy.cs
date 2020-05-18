@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<SpriteRenderer>().color = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().enemyColor;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentLife = maxLife;
     }
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().AddScore(50);
         GameObject de = Instantiate(deadEffect);
+        de.GetComponent<ParticleSystem>().startColor = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().enemyColor;
         de.transform.position = this.transform.position;
         GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().nbEnemy--;
         Destroy(gameObject);
