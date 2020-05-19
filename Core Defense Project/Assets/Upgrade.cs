@@ -119,6 +119,7 @@ public class Upgrade : MonoBehaviour
                 missileBullet++;
                 break;
             case 4:
+                player.laser = true;
                 laser = true;
                 break;
             default:

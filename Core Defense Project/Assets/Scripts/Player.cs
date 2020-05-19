@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public KeyCode fireInput;
     public Transform firePoint;
     private float time;
+    public bool laser;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +50,10 @@ public class Player : MonoBehaviour
             }
         }
 
-
+        if (laser)
+        {
+            DrawLaser();
+        }
 
         if (currentLife <= 0 && !isDead)
         {
@@ -84,6 +88,11 @@ public class Player : MonoBehaviour
             s.enabled = false;
         }
         
+    }
+
+    public void DrawLaser()
+    {
+
     }
 
     public void Heal(float ammount) 
