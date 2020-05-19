@@ -47,15 +47,12 @@ public class SpawnSystem : MonoBehaviour
             }
 
             //Timer 
-            currentTimer -= Time.deltaTime;
+            if(currentTimer > 0)
+                currentTimer -= Time.deltaTime;
 
             if (currentTimer <= 0)
             {
                 CollectCredit();
-                StartWave(currentWave + 1);
-                int timerExtra = (int)(currentTimer / 5f);
-                timer += timerExtra;
-                currentTimer = timer;
             }
 
             //Skip Timer
@@ -66,6 +63,14 @@ public class SpawnSystem : MonoBehaviour
         }
     }
 
+    public void NextWave()
+    {
+        StartWave(currentWave + 1);
+        int timerExtra = (int)(currentTimer / 5f);
+        timer += timerExtra;
+        currentTimer = timer;
+    }
+    
     public void CollectCredit()
     {
         Item[] credits = GameObject.FindObjectsOfType<Item>();

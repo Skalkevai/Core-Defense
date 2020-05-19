@@ -52,19 +52,6 @@ public class Engine : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SpawnSatellite(orbit1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SpawnSatellite(orbit2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SpawnSatellite(orbit3);
-        }
-
         creditNumberText.text = ""+credit;
     }
 
@@ -73,8 +60,20 @@ public class Engine : MonoBehaviour
         highScores += scores;
     }
 
-    public void SpawnSatellite(Transform orbit)
+    public void SpawnSatellite(int satelite)
     {
-        GameObject s = Instantiate(satellite,orbit);
+        
+        switch (satelite)
+        {
+            case 1:
+                GameObject s1 = Instantiate(satellite, orbit1);
+                break;
+            case 2:
+                GameObject s2 = Instantiate(satellite, orbit2);
+                break;
+            case 3:
+                GameObject s3 = Instantiate(satellite, orbit3);
+                break;
+        }
     }
 }
