@@ -52,8 +52,6 @@ public class Engine : MonoBehaviour
 
     public void Update()
     {
-
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SpawnSatellite(orbit1);

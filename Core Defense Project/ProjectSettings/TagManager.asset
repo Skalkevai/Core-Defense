@@ -9,6 +9,8 @@ TagManager:
   - Engine
   - Enemies
   - Canvas
+  - Credits
+  - Credit
   layers:
   - Default
   - TransparentFX

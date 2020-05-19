@@ -93,5 +93,10 @@ public class Player : MonoBehaviour
             collision.GetComponent<Enemy>().Die();
             TakeDamage(collision.GetComponent<Enemy>().damage);
         }
+        else if (collision.tag == "Credit")
+        {
+            Destroy(collision.gameObject);
+            GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().credit++;
+        }
     }
 }

@@ -176,6 +176,8 @@ MonoBehaviour:
   damage: 1
   deadEffect: {fileID: 7215528814910916044, guid: 0ae7339078272aa4695f47e575effe48,
     type: 3}
+  credit: {fileID: 3021013746207731889, guid: a6a10eabaa0e40d4dabc365c14023662, type: 3}
+  creditChance: 25
 --- !u!60 &1590338578
 PolygonCollider2D:
   m_ObjectHideFlags: 0

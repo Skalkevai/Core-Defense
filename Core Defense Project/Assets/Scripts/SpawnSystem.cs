@@ -67,8 +67,12 @@ public class SpawnSystem : MonoBehaviour
     }
 
     public void CollectCredit()
-    { 
-    
+    {
+        Item[] credits = GameObject.FindObjectsOfType<Item>();
+        foreach (Item item in credits)
+        {
+            item.Collect();
+        }
     }
     
     public void StartWave(int waveNb)
