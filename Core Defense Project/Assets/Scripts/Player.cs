@@ -94,16 +94,21 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
+        if (isDead)
+            return;
+
         GameObject p = null;
 
         if (missileOn)
         {
             p = Instantiate(missile);
+            GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.MISSILE);
             p.GetComponent<Missile>().player = this;
         }
         else
         {
             p = Instantiate(bullet);
+            GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.SHOOT);
             p.GetComponent<Bullet>().player = this;
         }
         p.transform.position = firePoint.position;
@@ -113,14 +118,18 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.PLAYERHIT);
         currentLife -= damage;
         Camera.main.GetComponent<Animator>().SetTrigger("BigShake");
     }
 
     public void Die()
     {
+        shock.enabled = false;
         isDead = true;
+        laser = false;
         GameObject e = Instantiate(deathEffect);
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.ENEMYDEAD);
         e.transform.position = Vector2.zero;
         spawnSystem.lost = true;
         spawnSystem.CallClean();
@@ -154,6 +163,7 @@ public class Player : MonoBehaviour
         else if (collision.tag == "Credit")
         {
             Destroy(collision.gameObject);
+            GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.COLLECT);
             GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().credit++;
         }
     }

@@ -46,13 +46,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.ENEMYHIT);
         currentLife -= damage;
     }
 
     public void Die()
     {
         GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().AddScore(50);
-
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.ENEMYDEAD);
         GameObject de = Instantiate(deadEffect);
         de.GetComponent<ParticleSystem>().startColor = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().enemyColor;
         de.transform.position = this.transform.position;

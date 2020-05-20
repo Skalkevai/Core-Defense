@@ -53,6 +53,9 @@ public class Upgrade : MonoBehaviour
         {
             bulletSpeedSprites[i].sprite = fillUpgrade;
         }
+
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.UPGRADE);
+
     }
 
     public void buySatelite()
@@ -134,6 +137,7 @@ public class Upgrade : MonoBehaviour
 
     private void UpdateAbility()
     {
+        GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.UPGRADE);
         for (int i = 0; i < satelite; i++)
         {
             sateliteSprites[i].sprite = fillUpgrade;
