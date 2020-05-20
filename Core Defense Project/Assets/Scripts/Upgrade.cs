@@ -111,12 +111,15 @@ public class Upgrade : MonoBehaviour
             case 2:
                 if (shockWave == shockWaveSprites.Length)
                     break;
+                player.shockwavesNb++;
+                player.shockPoint -= 5;
                 shockWave++;
                 break;
             case 3:
                 if (missileBullet == missileBulletSprites.Length)
                     break;
                 missileBullet++;
+                player.missileOn = true;
                 break;
             case 4:
                 player.laser = true;

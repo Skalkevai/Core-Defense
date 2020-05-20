@@ -13,6 +13,9 @@ public class SpawnSystem : MonoBehaviour
     float timer;
     float currentTimer;
 
+    public GameObject upgradePanel;
+    public bool upgradePanelOn;
+
     public GameObject waveText;
     public TextMeshProUGUI timerText;
 
@@ -64,7 +67,12 @@ public class SpawnSystem : MonoBehaviour
     }
 
     public void NextWave()
-    {
+    { 
+        upgradePanelOn = false;
+        upgradePanel.GetComponent<Animator>().SetBool("On",false);
+        upgradePanel.GetComponent<Animator>().SetTrigger("Down");
+       
+
         StartWave(currentWave + 1);
         int timerExtra = (int)(currentTimer / 5f);
         timer += timerExtra;
@@ -78,6 +86,10 @@ public class SpawnSystem : MonoBehaviour
         {
             item.Collect();
         }
+        upgradePanelOn = true;
+        upgradePanel.GetComponent<Animator>().SetBool("On", true);
+        upgradePanel.GetComponent<Animator>().SetTrigger("Up");
+        
     }
     
     public void StartWave(int waveNb)

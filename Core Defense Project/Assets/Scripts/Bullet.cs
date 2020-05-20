@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().AddScore(10);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().currentShockPoint += 1f;
             collision.GetComponent<Enemy>().TakeDamage(player.bulletDamage);
             Destroy(gameObject);
             GameObject e = Instantiate(bulletExplosion);

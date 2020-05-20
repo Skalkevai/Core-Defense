@@ -19,6 +19,7 @@ public class MiniBullet : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().AddScore(5);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().currentShockPoint += .5f;
             collision.GetComponent<Enemy>().TakeDamage(player.sateliteDamage);
             Destroy(gameObject);
             GameObject e = Instantiate(bulletExplosion);
