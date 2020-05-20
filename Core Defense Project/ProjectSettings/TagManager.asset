@@ -11,6 +11,8 @@ TagManager:
   - Canvas
   - Credits
   - Credit
+  - Temp
+  - Effects
   layers:
   - Default
   - TransparentFX

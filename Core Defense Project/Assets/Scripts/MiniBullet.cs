@@ -12,6 +12,9 @@ public class MiniBullet : MonoBehaviour
     public void Start()
     {
         GetComponent<SpriteRenderer>().color = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor;
+        GetComponent<TrailRenderer>().startColor = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor;
+        GetComponent<TrailRenderer>().endColor = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor;
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

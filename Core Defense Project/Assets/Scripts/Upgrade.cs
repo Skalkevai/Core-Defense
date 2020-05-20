@@ -87,7 +87,7 @@ public class Upgrade : MonoBehaviour
             case 4:
                 if (bulletSpeedUpgrade == bulletSpeedSprites.Length)
                     break;
-                player.cannonSpeed++;
+                player.cannonSpeed+= 100;
                 bulletSpeedUpgrade++;
                 break;
             default:
