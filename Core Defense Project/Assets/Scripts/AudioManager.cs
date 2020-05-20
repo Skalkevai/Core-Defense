@@ -15,6 +15,30 @@ public class AudioManager : MonoBehaviour
     public AudioClip shoot;
     public AudioClip missile;
 
+    public AudioClip music1;
+    public AudioClip music2;
+    public AudioClip music3;
+
+    public void Start()
+    {
+        int r = Random.Range(0, 3);
+        switch (r)
+        {
+            case 0:
+                GetComponent<AudioSource>().clip = music1;
+                break;
+            case 1:
+                GetComponent<AudioSource>().clip = music2;
+                break;
+            case 2:
+                GetComponent<AudioSource>().clip = music3;
+                break;
+        }
+
+        GetComponent<AudioSource>().Play();
+
+    }
+
     public void PlaySound(Sounds sound)
     {
         switch (sound)
