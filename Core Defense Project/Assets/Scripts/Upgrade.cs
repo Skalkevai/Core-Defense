@@ -5,6 +5,8 @@ public class Upgrade : MonoBehaviour
 {
     public Player player;
 
+    public GameObject infoPanel;
+
     public Sprite emptyUpgrade;
     public Sprite fillUpgrade;
 
