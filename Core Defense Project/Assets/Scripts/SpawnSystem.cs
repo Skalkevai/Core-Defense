@@ -10,8 +10,6 @@ public class SpawnSystem : MonoBehaviour
     int startMaxNbEnemy = 5;
     int maxNbEnemy;
     int currentWave;
-    float timer;
-    float currentTimer;
 
     public GameObject upgradePanel;
     public bool upgradePanelOn;
@@ -28,8 +26,6 @@ public class SpawnSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 20;
-        currentTimer = timer;
         currentWave = 1;
         StartWave(currentWave);
     }
@@ -39,29 +35,9 @@ public class SpawnSystem : MonoBehaviour
     {
         if (!lost)
         {
-
-            //UI Timer
-            float minutes = Mathf.Floor(currentTimer / 60);
-            float seconds = Mathf.RoundToInt(currentTimer % 60);
-            timerText.text = "0" + minutes + ":" + seconds;
-            if (seconds < 10)
-            {
-                timerText.text = "0" + minutes + ":0" + seconds;
-            }
-
-            //Timer 
-            if(currentTimer > 0)
-                currentTimer -= Time.deltaTime;
-
-            if (currentTimer <= 0)
-            {
-                CollectCredit();
-            }
-
-            //Skip Timer
             if (nbEnemy == 0)
             {
-                currentTimer = 0;
+                CollectCredit();
             }
         }
     }
@@ -71,12 +47,9 @@ public class SpawnSystem : MonoBehaviour
         upgradePanelOn = false;
         upgradePanel.GetComponent<Animator>().SetBool("On",false);
         upgradePanel.GetComponent<Animator>().SetTrigger("Down");
-       
+
 
         StartWave(currentWave + 1);
-        int timerExtra = (int)(currentTimer / 5f);
-        timer += timerExtra;
-        currentTimer = timer;
     }
     
     public void CollectCredit()

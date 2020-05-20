@@ -55,7 +55,6 @@ public class Upgrade : MonoBehaviour
         }
 
         GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.UPGRADE);
-
     }
 
     public void buySatelite()
