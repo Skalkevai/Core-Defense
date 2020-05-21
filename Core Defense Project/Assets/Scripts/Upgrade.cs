@@ -26,6 +26,9 @@ public class Upgrade : MonoBehaviour
     public int costLaser;
     public TextMeshProUGUI costLaserText;
 
+    public Color canBuy = Color.green;
+    public Color cantBuy = Color.red;
+
     public Sprite emptyUpgrade;
     public Sprite fillUpgrade;
 
@@ -51,6 +54,95 @@ public class Upgrade : MonoBehaviour
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        UpdateCost();
+    }
+
+    public void Update()
+    {
+        UpdateCanBuy();
+    }
+
+    public void UpdateCost()
+    {
+        costLifeText.text = costLife+"";
+        costFireRateText.text = costFireRate+"";
+        costDamageText.text = costDamage+"";
+        costBulletSpeedText.text = costBulletSpeed+"";
+        costSateliteText.text = costSatelite+"";
+        costShockWaveText.text = costShockWave+"";
+        costMissileText.text = costMissile+"";
+        costLaserText.text = costLaser+"";
+    }
+
+    public void UpdateCanBuy()
+    {
+        if (GetComponent<Engine>().credit >= costLife)
+        {
+            costLifeText.color = Color.green;
+        }
+        else { costLifeText.color = Color.red; }
+        if (GetComponent<Engine>().credit >= costFireRate)  
+        {
+            costFireRateText.color = Color.green;
+        }
+        else 
+        { 
+            costFireRateText.color = Color.red; 
+        }
+        if (GetComponent<Engine>().credit >= costDamage)
+            
+        {
+            costDamageText.color = Color.green;
+        }
+        else 
+        { 
+            costDamageText.color = Color.red; 
+        }
+        if (GetComponent<Engine>().credit >= costBulletSpeed)
+            
+        {
+            costBulletSpeedText.color = Color.green;
+        }
+        else 
+        { 
+            costBulletSpeedText.color = Color.red; 
+        }
+        if (GetComponent<Engine>().credit >= costSatelite)
+            
+        {
+            costSateliteText.color = Color.green;
+        }
+        else 
+        { 
+            costSateliteText.color = Color.red;
+        }
+        if (GetComponent<Engine>().credit >= costShockWave)
+            
+        {
+            costShockWaveText.color = Color.green;
+        }
+        else 
+        { 
+            costShockWaveText.color = Color.red; 
+        }
+        if (GetComponent<Engine>().credit >= costMissile)
+            
+        {
+            costMissileText.color = Color.green;
+        }
+        else 
+        { 
+            costMissileText.color = Color.red; 
+        }
+        if (GetComponent<Engine>().credit >= costLaser)
+            
+        {
+            costLaserText.color = Color.green;
+        }
+        else 
+        { 
+            costLaserText.color = Color.red; 
+        }
     }
 
     private void UpdateUpgrade()
@@ -132,6 +224,7 @@ public class Upgrade : MonoBehaviour
         }
 
         UpdateUpgrade();
+        UpdateCost();
     }
 
     public bool CanBuy(int cost,int credit) 
@@ -194,6 +287,7 @@ public class Upgrade : MonoBehaviour
         }
 
         UpdateAbility();
+        UpdateCost();
     }
 
     private void UpdateAbility()

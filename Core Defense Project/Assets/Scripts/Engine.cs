@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Engine : MonoBehaviour
@@ -54,6 +55,12 @@ public class Engine : MonoBehaviour
     {
         creditNumberText.text = ""+credit;
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
+    }
+
 
     public void AddScore(int scores)
     {
