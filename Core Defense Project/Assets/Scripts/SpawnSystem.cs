@@ -33,13 +33,10 @@ public class SpawnSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!lost)
-        {
-            if (nbEnemy == 0)
+        if (nbEnemy == 0)
             {
                 CollectCredit();
             }
-        }
     }
 
     public void NextWave()
@@ -59,10 +56,12 @@ public class SpawnSystem : MonoBehaviour
         {
             item.Collect();
         }
-        upgradePanelOn = true;
-        upgradePanel.GetComponent<Animator>().SetBool("On", true);
-        upgradePanel.GetComponent<Animator>().SetTrigger("Up");
-        
+        if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().isDead)
+        {
+            upgradePanelOn = true;
+            upgradePanel.GetComponent<Animator>().SetBool("On", true);
+            upgradePanel.GetComponent<Animator>().SetTrigger("Up");
+        }
     }
     
     public void StartWave(int waveNb)

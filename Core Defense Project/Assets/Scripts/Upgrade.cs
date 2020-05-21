@@ -1,11 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Upgrade : MonoBehaviour
 {
     public Player player;
+    public TextMeshProUGUI infoText;
 
-    public GameObject infoPanel;
+    public int costLife;
+    public TextMeshProUGUI costLifeText;
+    public int costFireRate;
+    public TextMeshProUGUI costFireRateText;
+    public int costDamage;
+    public TextMeshProUGUI costDamageText;
+    public int costBulletSpeed;
+    public TextMeshProUGUI costBulletSpeedText;
+
+    public int costSatelite;
+    public TextMeshProUGUI costSateliteText;
+    public int costShockWave;
+    public TextMeshProUGUI costShockWaveText;
+    public int costMissile;
+    public TextMeshProUGUI costMissileText;
+    public int costLaser;
+    public TextMeshProUGUI costLaserText;
 
     public Sprite emptyUpgrade;
     public Sprite fillUpgrade;
@@ -59,12 +78,6 @@ public class Upgrade : MonoBehaviour
         GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.UPGRADE);
     }
 
-    public void buySatelite()
-    {
-        satelite++;
-        GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().SpawnSatellite(satelite);
-    }
-
     public void UpgradeStats(int stat)
     {
         switch (stat)
@@ -72,33 +85,63 @@ public class Upgrade : MonoBehaviour
             case 1:
                 if (lifeUpgrade == lifeSprites.Length)
                     break;
-                player.maxLife += 2;
-                lifeUpgrade++;
-                player.Heal(player.maxLife-player.currentLife);
+                else if (CanBuy(costLife,GetComponent<Engine>().credit)) 
+                {
+                    player.maxLife += 2;
+                    lifeUpgrade++;
+                    player.Heal(player.maxLife - player.currentLife);
+                    Buy(costLife);
+                    costLife *= 2;
+                }
                 break;
             case 2:
                 if (fireRateUpgrade == fireRateSprites.Length)
                     break;
-                player.fireRate = player.fireRate / 10;
-                fireRateUpgrade++;
+                else if (CanBuy(costFireRate, GetComponent<Engine>().credit))
+                {
+                    Buy(costFireRate);
+                    costFireRate *= 2;
+                    player.fireRate = player.fireRate / 10;
+                    fireRateUpgrade++;
+                }
                 break;
             case 3:
                 if (damageUpgrade == damageSprites.Length)
                     break;
-                player.bulletDamage++;
-                damageUpgrade++;
+                else if (CanBuy(costDamage, GetComponent<Engine>().credit))
+                {
+                    Buy(costDamage);
+                    costDamage *= 2;
+                    player.bulletDamage++;
+                    damageUpgrade++;
+                }
                 break;
             case 4:
                 if (bulletSpeedUpgrade == bulletSpeedSprites.Length)
                     break;
-                player.cannonSpeed+= 100;
-                bulletSpeedUpgrade++;
+                else if (CanBuy(costBulletSpeed, GetComponent<Engine>().credit))
+                {
+                    Buy(costBulletSpeed);
+                    costBulletSpeed *= 2;
+                    player.cannonSpeed += 100;
+                    bulletSpeedUpgrade++;
+                }
                 break;
             default:
                 break;
         }
 
         UpdateUpgrade();
+    }
+
+    public bool CanBuy(int cost,int credit) 
+    {
+        return credit >= cost;
+    }
+
+    public void Buy(int cost  )
+    {
+        GetComponent<Engine>().credit -= cost;
     }
 
     public void Ability(int ability)
@@ -108,26 +151,43 @@ public class Upgrade : MonoBehaviour
             case 1:
                 if (satelite == sateliteSprites.Length)
                     break;
-                satelite++;
-                GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().SpawnSatellite(satelite);
-                player.Heal(player.maxLife - player.currentLife);
+                else if (CanBuy(costSatelite, GetComponent<Engine>().credit))
+                {
+                    satelite++;
+                    GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().SpawnSatellite(satelite);
+                    player.Heal(player.maxLife - player.currentLife);
+                    Buy(costSatelite);
+                }
                 break;
             case 2:
                 if (shockWave == shockWaveSprites.Length)
                     break;
-                player.shockwavesNb++;
-                player.shockPoint -= 5;
-                shockWave++;
+                else if (CanBuy(costShockWave, GetComponent<Engine>().credit))
+                {
+                    player.shockwavesNb++;
+                    player.shockPoint -= 5;
+                    shockWave++;
+                    Buy(costShockWave);
+                    player.canShockWave=true;
+                }
                 break;
             case 3:
                 if (missileBullet == missileBulletSprites.Length)
                     break;
-                missileBullet++;
-                player.missileOn = true;
+                else if (CanBuy(costMissile, GetComponent<Engine>().credit))
+                {
+                    missileBullet++;
+                    player.missileOn = true;
+                    Buy(costMissile);
+                }
                 break;
             case 4:
-                player.laser = true;
-                laser = true;
+                if (laser == false && CanBuy(costLaser, GetComponent<Engine>().credit))
+                {
+                    player.laser = true;
+                    laser = true;
+                    Buy(costLaser);
+                }
                 break;
             default:
                 break;

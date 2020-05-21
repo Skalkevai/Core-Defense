@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     public int shockwavesNb;
     public GameObject shockWave;
+    public bool canShockWave;
     public KeyCode shockWaveInput;
     public float currentShockPoint;
     public float shockPoint;
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (currentShockPoint >= shockPoint)
+        if (currentShockPoint >= shockPoint && canShockWave)
         {
             shock.enabled = true;
         }
@@ -89,6 +90,7 @@ public class Player : MonoBehaviour
         if (currentLife <= 0 && !isDead)
         {
             Die();
+
         }
     }
 
@@ -137,7 +139,8 @@ public class Player : MonoBehaviour
         {
             s.enabled = false;
         }
-        
+        spawnSystem.upgradePanel.GetComponent<Animator>().SetTrigger("Close");
+        spawnSystem.upgradePanel.GetComponent<Animator>().SetBool("On",false);
     }
 
     public void DrawLaser()
