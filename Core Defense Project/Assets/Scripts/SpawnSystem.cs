@@ -18,6 +18,7 @@ public class SpawnSystem : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     public GameObject enemy;
+    public GameObject[] enemyPool;
     public int nbEnemy;
     public Transform enemies;
 
@@ -87,6 +88,7 @@ public class SpawnSystem : MonoBehaviour
             {
                 x = UnityEngine.Random.Range(-10, 10);
             }
+
 
             //Spawn Enemy
             GameObject e = Instantiate(enemy,enemies);

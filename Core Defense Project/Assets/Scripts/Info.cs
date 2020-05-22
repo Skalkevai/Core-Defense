@@ -19,14 +19,10 @@ public class Info : MonoBehaviour
 
     public void Update()
     {
-        if (Vector2.Distance(transform.position, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) <= detectRange)
-        {
-            upgrade.infoText.text =description;
-        }
-        else 
-        { 
-        
-        }
+        //if ()
+        //{
+        //    upgrade.infoText.text =description;
+        //}
     }
 
 }

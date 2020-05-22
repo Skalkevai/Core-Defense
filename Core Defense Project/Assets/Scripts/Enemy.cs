@@ -4,17 +4,19 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
+public enum EnemyType {BASIC,DIVIDER,TANK,HEALER}
 public class Enemy : MonoBehaviour
 {
     public Transform target;
-
+    public GameObject miniEnemy;
+    public EnemyType type;
     public int speed;
     public int maxLife;
     [HideInInspector]
     public float currentLife;
     public int damage;
     public GameObject deadEffect;
-
+    public float pointMultiplier;
     public GameObject credit;
     public int creditChance;
     public Transform credits;
@@ -30,8 +32,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (currentLife <= 0)
+        if (type == EnemyType.DIVIDER && currentLife <= 0)
+            Divide();
+        else if(currentLife <= 0) 
+        {
             Die();
+        }
     }
 
 
@@ -39,15 +45,27 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         transform.LookAt(target.position);
-        transform.Rotate(new Vector3(0,-90, 0), Space.Self);
-        if(!GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().lost)
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);     
+        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+        if (!GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().lost)
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
     public void TakeDamage(float damage)
     {
         GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.ENEMYHIT);
         currentLife -= damage;
+    }
+
+    public void Divide()
+    {
+        GameObject me = Instantiate(miniEnemy);
+        me.transform.position = transform.position;
+        Die();
+    }
+
+    public float GetPoint(int point)
+    {
+        return point * pointMultiplier;
     }
 
     public void Die()

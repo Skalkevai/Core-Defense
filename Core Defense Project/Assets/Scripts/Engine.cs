@@ -60,7 +60,10 @@ public class Engine : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
     }
-
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
     public void AddScore(int scores)
     {
