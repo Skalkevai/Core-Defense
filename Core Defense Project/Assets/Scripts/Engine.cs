@@ -32,6 +32,9 @@ public class Engine : MonoBehaviour
 
     public void Start()
     {
+        playerColor = HexToColor(PlayerPrefs.GetString("PlayerColorEngine"));
+        enemyColor = HexToColor(PlayerPrefs.GetString("EnemyColorEngine"));
+
         //SetColor
         foreach (SpriteRenderer s in playersSprites)
         {
@@ -42,6 +45,14 @@ public class Engine : MonoBehaviour
         playerColorDarker = Color.Lerp(playerColor, colorDarker, 0.5f);
         centralLight.GetComponent<Light2D>().color = playerColorDarker;
 
+    }
+
+    Color HexToColor(string hex)
+    {
+        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        return new Color32(r, g, b, 255);
     }
 
     public void Lost(int nbWave)
@@ -86,4 +97,5 @@ public class Engine : MonoBehaviour
                 break;
         }
     }
+
 }

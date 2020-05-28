@@ -15,7 +15,6 @@ public class SpawnSystem : MonoBehaviour
     public bool upgradePanelOn;
 
     public GameObject waveText;
-    public TextMeshProUGUI timerText;
 
     public GameObject enemy;
     public GameObject[] enemyPool;
@@ -73,7 +72,7 @@ public class SpawnSystem : MonoBehaviour
 
         //Wave
         currentWave = waveNb;
-        maxNbEnemy = startMaxNbEnemy + (1 * waveNb);
+        maxNbEnemy = startMaxNbEnemy + (waveNb/2);
 
         //Spawn Area
         for (int i = 0; i < maxNbEnemy; i++)

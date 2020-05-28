@@ -942,7 +942,7 @@ MonoBehaviour:
   waveText: {fileID: 5826643202857768618, guid: 24106ed47fe815c409de06327cb8e1d7,
     type: 3}
   timerText: {fileID: 0}
-  enemy: {fileID: 2225083081626275540, guid: 11ff35466259b1048880dee8a17525a7, type: 3}
+  enemy: {fileID: 3678284390975785319, guid: fda9695a28c74a04a93a737c49e12d56, type: 3}
   enemyPool:
   - {fileID: 2225083081626275540, guid: 11ff35466259b1048880dee8a17525a7, type: 3}
   - {fileID: 3678284390975785319, guid: fda9695a28c74a04a93a737c49e12d56, type: 3}
