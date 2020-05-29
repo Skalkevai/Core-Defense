@@ -6,11 +6,15 @@ using UnityEngine.UIElements;
 public class Rotate : MonoBehaviour
 {
     public Vector2 direction;
+    public Vector2 touchPosition;
 
     // Update is called once per frame
     void Update()
     {
-        FaceTouch();
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            FaceTouch();
+        }
         //FaceMouse();
     }
 
@@ -26,14 +30,8 @@ public class Rotate : MonoBehaviour
 
     void FaceTouch()
     {
-        Vector2 touchPosition = new Vector2(0,0);
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            touchPosition = Input.GetTouch(0).deltaPosition;
-        }
-
+        touchPosition = Input.GetTouch(0).deltaPosition;
         direction = new Vector2(touchPosition.x - transform.position.x, touchPosition.y - transform.position.y);
-
         transform.up = direction;
     }
 }

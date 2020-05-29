@@ -137,6 +137,7 @@ public class Player : MonoBehaviour
             GameObject.FindGameObjectWithTag("Engine").GetComponent<AudioManager>().PlaySound(Sounds.SHOOT);
             p.GetComponent<Bullet>().player = this;
         }
+
         p.transform.position = firePoint.position;
         p.GetComponent<Rigidbody2D>().velocity = cannon.direction.normalized*cannonSpeed*Time.deltaTime;
     
