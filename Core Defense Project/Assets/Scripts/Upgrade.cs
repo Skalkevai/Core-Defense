@@ -71,7 +71,6 @@ public class Upgrade : MonoBehaviour
         costSateliteText.text = costSatelite+"";
         costShockWaveText.text = costShockWave+"";
         costMissileText.text = costMissile+"";
-        costLaserText.text = costLaser+"";
     }
 
     public void UpdateCanBuy()
@@ -134,15 +133,7 @@ public class Upgrade : MonoBehaviour
         { 
             costMissileText.color = Color.red; 
         }
-        if (GetComponent<Engine>().credit >= costLaser)
-            
-        {
-            costLaserText.color = Color.green;
-        }
-        else 
-        { 
-            costLaserText.color = Color.red; 
-        }
+        
     }
 
     private void UpdateUpgrade()

@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
             shock.enabled = false;
         }
 
-        if (Input.GetKeyDown(shockWaveInput)&&shockwavesNb>0 && !isDead && currentShockPoint >= shockPoint)
+        if (Input.GetKeyDown(shockWaveInput))
         {
             ShockWave();
         }
@@ -94,9 +94,12 @@ public class Player : MonoBehaviour
 
     public void ShockWave()
     {
-        currentShockPoint = 0;
-        GameObject s = Instantiate(shockWave);
-        Destroy(s, 2f);
+        if (shockwavesNb > 0 && !isDead && currentShockPoint >= shockPoint)
+        {
+            currentShockPoint = 0;
+            GameObject s = Instantiate(shockWave);
+            Destroy(s, 2f);
+        }
     }
 
     void Shoot()
