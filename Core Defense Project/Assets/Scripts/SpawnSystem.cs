@@ -4,12 +4,16 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.Rendering;
+using System.Threading;
 
 public class SpawnSystem : MonoBehaviour
 {
     int startMaxNbEnemy = 5;
     int maxNbEnemy;
     int currentWave;
+
+    public int x;
+    public int y;
 
     public GameObject upgradePanel;
     public bool upgradePanelOn;
@@ -66,6 +70,7 @@ public class SpawnSystem : MonoBehaviour
     
     public void StartWave(int waveNb)
     {
+
         GameObject w = Instantiate(waveText,GameObject.FindGameObjectWithTag("Canvas").transform);
         w.GetComponent<TextMeshProUGUI>().text = "Waves : " + waveNb;
         Destroy(w,2f);
@@ -77,20 +82,62 @@ public class SpawnSystem : MonoBehaviour
         //Spawn Area
         for (int i = 0; i < maxNbEnemy; i++)
         {
-            int x = UnityEngine.Random.Range(-15, 15);
+
+            x = UnityEngine.Random.Range(-15, 15);
             while (x < 10 && x > -10)
             {
                 x = UnityEngine.Random.Range(-15, 15);
             }
-            int y = UnityEngine.Random.Range(-10, 10);
+            y = UnityEngine.Random.Range(-10, 10);
             while (x < 5 && x > -5)
             {
                 x = UnityEngine.Random.Range(-10, 10);
             }
 
+            if (i > 5)
+            {
+                float timer = UnityEngine.Random.Range(0.5f, 1f);
+                Invoke("SpawnEnemy", timer);
+            }
+            else 
+            {
+                SpawnEnemy();
+            }
+        }
+    }
 
-            //Spawn Enemy
-            GameObject e = Instantiate(enemy,enemies);
+    public void SpawnEnemy()
+    {
+        if (maxNbEnemy > 15 && maxNbEnemy < 25)
+        {
+            int r = UnityEngine.Random.Range(0,3);
+
+            GameObject e = Instantiate(enemyPool[r], enemies);
+            nbEnemy++;
+            e.transform.position = new Vector2(x, y);
+
+        }
+        else if (maxNbEnemy >= 25 && maxNbEnemy < 35)
+        {
+            int r = UnityEngine.Random.Range(0, 4);
+
+            GameObject e = Instantiate(enemyPool[r], enemies);
+            nbEnemy++;
+            e.transform.position = new Vector2(x, y);
+
+        }
+        else if (maxNbEnemy >= 35)
+        {
+            int r = UnityEngine.Random.Range(0, 5);
+
+            GameObject e = Instantiate(enemyPool[r], enemies);
+            nbEnemy++;
+            e.transform.position = new Vector2(x, y);
+
+        }
+        else
+        {
+            GameObject e = Instantiate(enemy, enemies);
             nbEnemy++;
             e.transform.position = new Vector2(x, y);
         }

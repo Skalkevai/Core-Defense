@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0743c2086c099d040954eee7391e7a5d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7d5bd4c2300c1048b692a2613d090ea, type: 3}
   m_Color: {r: 1, g: 0.1745283, b: 0.1745283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,12 @@ MonoBehaviour:
   type: 3
   speed: 2
   maxLife: 1
+  giveLife: 2
   currentLife: 0
   damage: 1
   deadEffect: {fileID: 7215528814910916044, guid: 0ae7339078272aa4695f47e575effe48,
+    type: 3}
+  healEffect: {fileID: 1332488671925418112, guid: 2c630247119f60e43a00108e1eb2c78e,
     type: 3}
   pointMultiplier: 0
   credit: {fileID: 3021013746207731889, guid: a6a10eabaa0e40d4dabc365c14023662, type: 3}
@@ -127,7 +130,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4578779, y: 0.52390707}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 6, y: 6}
     newSize: {x: 19.2, y: 10.8}
     adaptiveTilingThreshold: 0.5

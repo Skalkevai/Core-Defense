@@ -193,7 +193,7 @@ public class Upgrade : MonoBehaviour
                 {
                     Buy(costFireRate);
                     costFireRate *= 2;
-                    player.fireRate = player.fireRate / 10;
+                    player.fireRate = player.fireRate *0.8f;
                     fireRateUpgrade++;
                 }
                 break;

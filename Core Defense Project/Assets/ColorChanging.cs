@@ -17,11 +17,28 @@ public class ColorChanging : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.GetString("PlayerColorEngine") == "")
+        {
+            PlayerPrefs.SetString("PlayerColorEngine", ColorToHex(playerColor));
+
+        }
+        if (PlayerPrefs.GetString("EnemyColorEngine") == "")
+        {
+            PlayerPrefs.SetString("EnemyColorEngine", ColorToHex(enemyColor));
+        }
+
         if (SceneManager.GetActiveScene().name != "Custom")
         {
-
             playerColor = HexToColor(PlayerPrefs.GetString("PlayerColorEngine"));
             enemyColor = HexToColor(PlayerPrefs.GetString("EnemyColorEngine"));
+        }
+
+        if (SceneManager.GetActiveScene().name == "Custom")
+        {
+            playerColor = HexToColor(PlayerPrefs.GetString("PlayerColorEngine"));
+            enemyColor = HexToColor(PlayerPrefs.GetString("EnemyColorEngine"));
+            colorSelection.player = playerColor;
+            colorSelection.enemy = enemyColor;
         }
     }
 

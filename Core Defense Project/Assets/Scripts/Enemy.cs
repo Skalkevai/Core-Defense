@@ -12,10 +12,12 @@ public class Enemy : MonoBehaviour
     public EnemyType type;
     public int speed;
     public int maxLife;
+    public int giveLife;
     [HideInInspector]
     public float currentLife;
     public int damage;
     public GameObject deadEffect;
+    public GameObject healEffect;
     public float pointMultiplier;
     public GameObject credit;
     public int creditChance;
@@ -34,7 +36,11 @@ public class Enemy : MonoBehaviour
     {
         if (type == EnemyType.DIVIDER && currentLife <= 0)
             Divide();
-        else if(currentLife <= 0) 
+        else if (type == EnemyType.HEALER && currentLife <= 0)
+        {
+            Heal();
+        }
+        else if (currentLife <= 0)
         {
             Die();
         }
@@ -60,6 +66,15 @@ public class Enemy : MonoBehaviour
     {
         GameObject me = Instantiate(miniEnemy);
         me.transform.position = transform.position;
+        Die();
+    }
+
+    public void Heal()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().currentLife += giveLife;
+        GameObject he = Instantiate(healEffect);
+        he.GetComponent<ParticleSystem>().startColor = Color.green;
+        he.transform.position = this.transform.position;
         Die();
     }
 

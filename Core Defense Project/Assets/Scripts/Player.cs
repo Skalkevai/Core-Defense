@@ -75,9 +75,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(shockWaveInput)&&shockwavesNb>0 && !isDead && currentShockPoint >= shockPoint)
         {
-            currentShockPoint = 0;
-            GameObject s = Instantiate(shockWave);
-            Destroy(s, 2f);
+            ShockWave();
         }
 
         if (laser)
@@ -92,6 +90,13 @@ public class Player : MonoBehaviour
             Die();
 
         }
+    }
+
+    public void ShockWave()
+    {
+        currentShockPoint = 0;
+        GameObject s = Instantiate(shockWave);
+        Destroy(s, 2f);
     }
 
     void Shoot()
