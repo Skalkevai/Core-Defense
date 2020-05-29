@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (Input.GetKeyDown(fireInput)&& !GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().upgradePanelOn)
+        if (IsDoubleTap() && !GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().upgradePanelOn)
         {
             if(time >= fireRate)
             {
@@ -90,6 +90,22 @@ public class Player : MonoBehaviour
             Die();
 
         }
+    }
+    public static bool IsDoubleTap()
+    {
+        bool result = false;
+        float MaxTimeWait = 1;
+        float VariancePosition = 1;
+
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            float DeltaTime = Input.GetTouch(0).deltaTime;
+            float DeltaPositionLenght = Input.GetTouch(0).deltaPosition.magnitude;
+
+            if (DeltaTime > 0 && DeltaTime < MaxTimeWait && DeltaPositionLenght < VariancePosition)
+                result = true;
+        }
+        return result;
     }
 
     public void ShockWave()
