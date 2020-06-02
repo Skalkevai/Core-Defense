@@ -30,6 +30,9 @@ public class Engine : MonoBehaviour
     public Color enemyColor;
     public Color itemColor;
 
+    public bool onMobile;
+    public GameObject shockButton;
+
     public void Start()
     {
         playerColor = HexToColor(PlayerPrefs.GetString("PlayerColorEngine"));
@@ -45,6 +48,19 @@ public class Engine : MonoBehaviour
         playerColorDarker = Color.Lerp(playerColor, colorDarker, 0.5f);
         centralLight.GetComponent<Light2D>().color = playerColorDarker;
 
+        if (Application.isMobilePlatform)
+        {
+            onMobile = true;
+        }
+        else 
+        {
+            onMobile = false;
+        }
+
+        if (!onMobile)
+        {
+            shockButton.SetActive(false); 
+        }
     }
 
     Color HexToColor(string hex)

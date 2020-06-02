@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 5826643202857768618, guid: 24106ed47fe815c409de06327cb8e1d7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5826643202857768620, guid: 24106ed47fe815c409de06327cb8e1d7,
         type: 3}
@@ -1114,6 +1114,8 @@ MonoBehaviour:
   centralLight: {fileID: 1407458637}
   enemyColor: {r: 0.8018868, g: 0, b: 0.5261392, a: 1}
   itemColor: {r: 0.34348163, g: 0.990566, b: 0.34109113, a: 1}
+  onMobile: 1
+  shockButton: {fileID: 44012024}
 --- !u!95 &109795692
 Animator:
   serializedVersion: 3
@@ -1447,7 +1449,7 @@ RectTransform:
   m_GameObject: {fileID: 163649943}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1648781458}
   m_Father: {fileID: 343167024}
@@ -1665,7 +1667,7 @@ RectTransform:
   m_GameObject: {fileID: 195881584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1184411826}
   m_Father: {fileID: 929697179}
@@ -3068,7 +3070,7 @@ RectTransform:
   m_GameObject: {fileID: 370769207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1800094039}
   m_Father: {fileID: 1607165484}
@@ -3736,7 +3738,7 @@ RectTransform:
   m_GameObject: {fileID: 535746042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1230291596}
   m_Father: {fileID: 1298430386}
@@ -4607,7 +4609,7 @@ PrefabInstance:
     - target: {fileID: 5826643202857768618, guid: 24106ed47fe815c409de06327cb8e1d7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5826643202857768620, guid: 24106ed47fe815c409de06327cb8e1d7,
         type: 3}
@@ -5302,6 +5304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
+  touchPosition: {x: 0, y: 0}
+  onMobile: 0
 --- !u!120 &900876223
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -7446,7 +7450,7 @@ RectTransform:
   m_GameObject: {fileID: 1279724623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1471873646}
   m_Father: {fileID: 335270019}
@@ -9162,7 +9166,7 @@ RectTransform:
   m_GameObject: {fileID: 1597294289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1301152928}
   m_Father: {fileID: 91524074}
@@ -11301,6 +11305,7 @@ MonoBehaviour:
   shockPoint: 50
   shock: {fileID: 2130960745}
   missileOn: 0
+  onMobile: 0
 --- !u!58 &2007804484
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11800,7 +11805,7 @@ RectTransform:
   m_GameObject: {fileID: 2106268651}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 815117722}
   m_Father: {fileID: 910541303}
@@ -11986,7 +11991,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4278190080
   m_fontSize: 120
-  m_fontSizeBase: 36
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18

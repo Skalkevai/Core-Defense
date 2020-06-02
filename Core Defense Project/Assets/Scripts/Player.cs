@@ -37,9 +37,12 @@ public class Player : MonoBehaviour
     public SpriteRenderer shock;
     public bool missileOn;
 
+    public bool onMobile;
     // Start is called before the first frame update
     void Start()
     {
+        onMobile = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().onMobile;
+
         spawnSystem = GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>();
         currentLife = maxLife;
         Color laserColor = Color.Lerp(GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().playerColor, new Color (0,0,0,175),0.5f);
@@ -55,12 +58,26 @@ public class Player : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (IsDoubleTap() && !GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().upgradePanelOn)
+        if (onMobile)
         {
-            if(time >= fireRate)
+            if (IsDoubleTap() && !GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().upgradePanelOn)
             {
-                time = 0;
-                Shoot();
+                if (time >= fireRate)
+                {
+                    time = 0;
+                    Shoot();
+                }
+            }
+        }
+        else 
+        {
+            if (Input.GetMouseButtonDown(0) && !GameObject.FindGameObjectWithTag("Engine").GetComponent<SpawnSystem>().upgradePanelOn)
+            {
+                if (time >= fireRate)
+                {
+                    time = 0;
+                    Shoot();
+                }
             }
         }
 

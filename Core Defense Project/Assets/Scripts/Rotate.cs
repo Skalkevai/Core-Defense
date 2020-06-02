@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Rotate : MonoBehaviour
@@ -8,14 +9,29 @@ public class Rotate : MonoBehaviour
     public Vector2 direction;
     public Vector2 touchPosition;
 
+    public bool onMobile;
+
+    private void Start()
+    {
+        if(SceneManager.GetActiveScene().name == "Game")
+            onMobile  = GameObject.FindGameObjectWithTag("Engine").GetComponent<Engine>().onMobile;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (onMobile)
         {
-            FaceTouch();
+
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                FaceTouch();
+            }
         }
-        //FaceMouse();
+        else
+        {
+            FaceMouse();
+        }
     }
 
     void FaceMouse()
@@ -30,7 +46,7 @@ public class Rotate : MonoBehaviour
 
     void FaceTouch()
     {
-        touchPosition = Input.GetTouch(0).deltaPosition;
+        touchPosition = Input.GetTouch(1).position;
         direction = new Vector2(touchPosition.x - transform.position.x, touchPosition.y - transform.position.y);
         transform.up = direction;
     }
